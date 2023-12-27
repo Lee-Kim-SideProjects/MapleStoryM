@@ -60,12 +60,21 @@ public class PlayerMovement : MonoBehaviour
 
         //점프 체크
         if (rigid.velocity.y < 0)
+        
         {
-            RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1.0f, LayerMask.GetMask("Ground"));
+            Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
+            RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1.0f, LayerMask.GetMask("Ground")) ;
 
             if (rayHit.collider != null)
-                if (rayHit.distance < 0.6f)
+            {
+                if (rayHit.distance < 0.7f)
                     anim.SetBool("isJump", false);
+            }
+            else
+            {
+                anim.SetBool("isJump", true);
+            }
+                
         }
     }
 
@@ -86,4 +95,31 @@ public class PlayerMovement : MonoBehaviour
         attackFinsh = true;
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+            OnDamaged(other.transform.position);
+    }
+
+    void OnDamaged(Vector2 targetPos)
+    {
+        //무적 레이어로 이동
+        gameObject.layer = 11;
+
+        //알파값 조절
+        spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+
+        //튕겨 나가기 
+        int dirc = transform.position.x - targetPos.x > 0 ? 5 : -5;
+        rigid.AddForce(new Vector2(dirc, 1), ForceMode2D.Impulse);
+        //rigid.AddForce(new Vector2(dirc * 10, 10), ForceMode2D.Impulse);
+
+        Invoke("OffDamaged", 1f);
+    }
+
+    void OffDamaged()
+    {
+        gameObject.layer = 10;
+        spriteRenderer.color = new Color(1, 1, 1, 1f);
+    }
 }
