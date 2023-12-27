@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator anim;
 
+    private bool attackFinsh = true;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -20,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //점프
-        if (Input.GetButtonDown("Jump") && !anim.GetBool("isJump"))
+        if (Input.GetKeyDown(KeyCode.LeftAlt) && !anim.GetBool("isJump"))
         {
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             anim.SetBool("isJump", true);
@@ -41,6 +43,9 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("isWalk", false);
         else
             anim.SetBool("isWalk", true);
+
+        //공격
+        BaseAttack();
     }
 
     void FixedUpdate()
@@ -63,4 +68,22 @@ public class PlayerMovement : MonoBehaviour
                     anim.SetBool("isJump", false);
         }
     }
+
+    void BaseAttack()
+    {
+        if (attackFinsh)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                attackFinsh = false;
+                anim.SetTrigger("isAttack");
+                Invoke("DelayBaseAttack", 0.9f);
+            }
+        }
+    }
+    void DelayBaseAttack()
+    {
+        attackFinsh = true;
+    }
+
 }
