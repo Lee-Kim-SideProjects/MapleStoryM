@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Warrior_Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 616a12374f77f454196bdbfda5b314e1, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 8f9abf01c5946224faa6091dbac687db: 21300000
+    - e050b411c8072e849b3ce339ce613202: 21300000
+    - bb25c232d347c7a4aab113e9f6e44c5c: 21300000
+    - 4c578834d46c5d14499c45c5203a6573: 21300000
+    - e720ce8490b4ba04b8d18604cf3384b1: 21300000
+    - 3b9e44856da430246b24b6b1b9b1abbd: 21300000
+    - 7cc8acc749b02a44395f1a340dd119b1: 21300000
+    - 628dbdf718410524384e085e17240935: 21300000
+    - d355cd08deeb48041911995c68d4349c: 21300000
+    - 21fd31695527c9542843affde0644905: 21300000
+    - 475203997bee01c499b4cb58aa5f8f63: 21300000
+    - 5ac5263c19f209f4b89fbc1ae2be1092: 21300000
+    - 8fceec1d35e18e541ba747890a1b0c9a: 21300000
+    - a303675dffae04945943db50644fad9c: 21300000
+    - 96d210cde1168744796911809d6367f1: 21300000
+    - c326580e06c1d29428a74ef8d7ba3f33: 21300000
+    - 503ca99e27dcdec438a446b9d2a57971: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 8f9abf01c5946224faa6091dbac687db, type: 3}
+  - {fileID: 21300000, guid: e050b411c8072e849b3ce339ce613202, type: 3}
+  - {fileID: 21300000, guid: bb25c232d347c7a4aab113e9f6e44c5c, type: 3}
+  - {fileID: 21300000, guid: 4c578834d46c5d14499c45c5203a6573, type: 3}
+  - {fileID: 21300000, guid: e720ce8490b4ba04b8d18604cf3384b1, type: 3}
+  - {fileID: 21300000, guid: 3b9e44856da430246b24b6b1b9b1abbd, type: 3}
+  - {fileID: 21300000, guid: 7cc8acc749b02a44395f1a340dd119b1, type: 3}
+  - {fileID: 21300000, guid: 628dbdf718410524384e085e17240935, type: 3}
+  - {fileID: 21300000, guid: d355cd08deeb48041911995c68d4349c, type: 3}
+  - {fileID: 21300000, guid: 21fd31695527c9542843affde0644905, type: 3}
+  - {fileID: 21300000, guid: 475203997bee01c499b4cb58aa5f8f63, type: 3}
+  - {fileID: 21300000, guid: 5ac5263c19f209f4b89fbc1ae2be1092, type: 3}
+  - {fileID: 21300000, guid: 8fceec1d35e18e541ba747890a1b0c9a, type: 3}
+  - {fileID: 21300000, guid: a303675dffae04945943db50644fad9c, type: 3}
+  - {fileID: 21300000, guid: 96d210cde1168744796911809d6367f1, type: 3}
+  - {fileID: 21300000, guid: c326580e06c1d29428a74ef8d7ba3f33, type: 3}
+  - {fileID: 21300000, guid: 503ca99e27dcdec438a446b9d2a57971, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - avatar_stabO2(0)_default(0)
+  - avatar_stand1(0)_default(0)
+  - avatar_stabOF(0)_default(0)
+  - avatar_swingO2(0)_default(0)
+  - avatar_swingO1(0)_default(0)
+  - avatar_rope(0)_default(0)
+  - avatar_walk1(1)_default(0)
+  - avatar_walk1(3)_default(0)
+  - avatar_walk1(0)_default(0)
+  - avatar_alert(0)_default(0)
+  - avatar_swingO3(0)_default(0)
+  - avatar_swingOF(0)_default(0)
+  - avatar_jump(0)_default(0)
+  - avatar_walk1(2)_default(0)
+  - avatar_stabO1(0)_default(0)
+  - avatar_ladder(0)_default(0)
+  - avatar_proneStab(0)_default(0)
+  m_RenderDataMap: {}
+  m_Tag: Warrior_Atlas
+  m_IsVariant: 0

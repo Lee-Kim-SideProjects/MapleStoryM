@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/01.Scenes/YJ_Training.unity
+    guid: 6f215fec41e1e0d4386f9d490da2705d
   m_configObjects: {}
