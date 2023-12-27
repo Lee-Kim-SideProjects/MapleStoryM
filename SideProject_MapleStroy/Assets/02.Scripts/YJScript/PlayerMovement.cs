@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //방향 전환
-        if (Input.GetButtonDown("Horizontal"))
+        if (Input.GetButton("Horizontal"))
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == 1;
 
         //애니메이션 전환
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (rayHit.collider != null)
             {
-                if (rayHit.distance < 0.7f)
+                if (rayHit.distance < 0.8f)
                     anim.SetBool("isJump", false);
             }
             else
@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
 
         //튕겨 나가기 
         int dirc = transform.position.x - targetPos.x > 0 ? 5 : -5;
-        rigid.AddForce(new Vector2(dirc, 1), ForceMode2D.Impulse);
+        rigid.AddForce(new Vector2(dirc, 5), ForceMode2D.Impulse);
         //rigid.AddForce(new Vector2(dirc * 10, 10), ForceMode2D.Impulse);
 
         Invoke("OffDamaged", 1f);
