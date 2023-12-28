@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlueSnail
   m_EditorClassIdentifier: 
   monsterName: BlueSnail
-  monsterPrefab: {fileID: 0}
+  monsterPrefab: {fileID: 2535529582589108114, guid: 23dcf659c896dcb4286c2b68c19b2a81, type: 3}
   level: 3
   hp: 15
   exp: 3
