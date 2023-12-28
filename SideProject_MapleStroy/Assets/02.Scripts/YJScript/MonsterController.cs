@@ -18,9 +18,6 @@ public class MonsterController : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody2D>();
-
         // 시작할 때 데이터 가져오기
         maxHp = monsterData.hp;
         currentHp = monsterData.hp;
@@ -38,14 +35,19 @@ public class MonsterController : MonoBehaviour
         // 몬스터의 체력이 0 이하면 죽음 처리
         if (currentHp <= 0)
             if (!anim.GetBool("isDie"))
-                Die();
+                StartCoroutine("Die");
     }
     private void OnEnable()
     {
+        anim = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody2D>();
         //값 초기화
         currentHp = monsterData.hp;
-        gameObject.GetComponent<MonsterMovement>().enabled = true;
         healthBar.SetHealth(currentHp, maxHp);
+        if ((rigid.constraints & RigidbodyConstraints2D.FreezePositionX) != 0)
+        {
+            rigid.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+        }
     }
 
     // 피해를 받는 함수
@@ -61,21 +63,17 @@ public class MonsterController : MonoBehaviour
         healthBar.SetHealth(currentHp, maxHp);
     }
 
-    void Die()
+    IEnumerator Die()
     {
         // 캐릭터 경험치 추가
 
         //죽는 모션
         anim.SetBool("isDie",true);
         // 움직이는 스크립트 정지
-       // gameObject.GetComponent<MonsterMovement>().enabled = false;
+        rigid.constraints = RigidbodyConstraints2D.FreezeAll;
         // 죽는 사운드
 
-        Invoke("OffDieSnail", 2f);
-    }
-
-    void OffDieSnail()
-    {
+        yield return new WaitForSeconds(1.0f);
         gameObject.SetActive(false);
     }
 }
