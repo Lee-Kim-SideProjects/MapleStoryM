@@ -1,4 +1,6 @@
+using NPOI.SS.Formula.Functions;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace XEntity.InventoryItemSystem
 {
@@ -8,21 +10,13 @@ namespace XEntity.InventoryItemSystem
     {
         private bool isHarvested = false;
 
-        //클릭 시 수확되는 항목입니다.
+        //The item that will be harvested on click.
         public Item harvestItem;
-
-        [SerializeField]
-        private LayerMask layerMask;
-
-        void Update()
-        {
-            //PressGetHarvester();
-        }
 
         //The item is instantly added to the inventory of the interactor on interact.
         public void OnClickInteract(Interactor interactor)
         {
-            //아직 수확하지 않은 경우 수확 시도
+            //Attempt to harvest if not harvested already
             AttemptHarvest(interactor);
         }
 
@@ -36,35 +30,16 @@ namespace XEntity.InventoryItemSystem
                 }
             }
         }
-
-        void OnTriggerEnter(Collider col)
+        void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.CompareTag("Player")) { }
-            Interactor interactor = col.GetComponent<Interactor>();
-            if (interactor != null)
+            if (col != null && col.CompareTag("Player"))
             {
-                AttemptHarvest(interactor);
-            }
-        }
-
-        /*
-        void PressGetHarvester()
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                Collider[] colliders = Physics.OverlapSphere(this.transform.position, 3f, layerMask);
-
-                foreach (Collider col in colliders)
+                Interactor interactor = col.GetComponent<Interactor>();
+                if (interactor != null)
                 {
-                    Interactor interactor = col.GetComponent<Interactor>();
-                    if (interactor != null)
-                    {
-                        AttemptHarvest(interactor);
-                        break;
-                    }
+                    AttemptHarvest(interactor);
                 }
             }
         }
-        */
     }
 }

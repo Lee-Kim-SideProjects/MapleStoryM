@@ -4,8 +4,11 @@ using UnityEngine.UI;
 
 namespace XEntity.InventoryItemSystem
 {
+    //This script is attached to the UI representation of the item container. An example item container UI prefab is provided with the asset.
     public class ItemContainer : MonoBehaviour
     {
+        [Header("Do NOT assign interactor on external containers.")]
+        //The carrier is the interactor this ItemContainer is assigned to. For a player it is the general player inventory.
         public Interactor containerInteractor;
         [SerializeField]
         protected string containerTitle;
@@ -13,17 +16,19 @@ namespace XEntity.InventoryItemSystem
         protected KeyCode UIToggleKey = KeyCode.I;
         [SerializeField]
         private SlotOptions[] customOptionsMenuConfig;
+        //If this is true, when items are removed from this container, they will be dropped in front of the container.
         [Tooltip("If true when items are removed the corresponding prefab will be instantiated in the scene near the carrier")]
         public bool dropItemGameObjects = true;
 
 
-        //이 컨테이너가 가지고 있는 슬롯 배열. 슬롯은 코드를 통해 할당됩니다.
+        //The array of slots this container holds. The slots are assigned through code based on the number of children the slot holder Transform contains.
         protected ItemSlot[] slots;
 
-        //컨테이너의 UI.컨테이너 UI 템플릿 프리팹이 제공됩니다.
+        //The UI of the container, a containerUI template prefab is provided with this asset. All container UI mus tbe set up exactly in that same way.
+        //To modify the number of slots, modifiy the number of children the slot holder inside the containerUI has.
         protected Transform mainContainerUI;
 
-        // 슬롯을 클릭했을 때 나타나는 옵션 UI. 이 애셋에는 이 템플릿을 사용하는 예제가 제공됩니다.
+        //The options UI that pops up when a slot is clicked. A prefab template for this UI is provided with this asset.
         protected GameObject itemInfoPanel;
         protected GameObject slotOptionsMenu;
         protected bool isContainerUIOpen = false;
@@ -48,10 +53,10 @@ namespace XEntity.InventoryItemSystem
         {
             isUIInitialized = false;
 
-            // 컨테이너는 Awake에서 초기화됩니다.
+            //The container is initilized on awake.
             InitializeContainer();
 
-            // 이 컨테이너의 모든 슬롯을 초기화합니다.
+            //Initialize all the slots in this container.
             foreach (ItemSlot slot in slots) 
             {
                 slot.Initialize();            
@@ -65,7 +70,7 @@ namespace XEntity.InventoryItemSystem
             CheckForUIToggleInput();
         }
 
-        // 컨테이너 변수들은 여기서 기반으로 할당됩니다.
+        //All the container variables are assigned here based.
         protected virtual void InitializeContainer()
         {
             IntialzieMainUI(transform);
@@ -96,10 +101,9 @@ namespace XEntity.InventoryItemSystem
             mainContainerUI.gameObject.SetActive(false);
         }
 
-        // 슬롯 옵션 메뉴를 생성합니다.
         protected virtual void CreateSlotOptionsMenu(SlotOptions[] config, Interactor interactor)
         {
-            // 유효한 사용자 지정 구성이 있다면 해당 구성을 사용하고, 그렇지 않으면 기본 구성을 사용합니다.
+            //If valid custom configuration eixsts, use that instead of the default one.
             if (customOptionsMenuConfig != null && customOptionsMenuConfig.Length > 0)
             {
                 config = customOptionsMenuConfig;
@@ -121,7 +125,7 @@ namespace XEntity.InventoryItemSystem
                 string buttonTitle = option.ToString();
                 System.Action<ItemSlot, Interactor> onButtonClicked = null;
 
-                // 사용자 정의 슬롯 옵션을 여기에 추가 ###################################################################################################
+                //Add custom slot options here ###################################################################################################
                 switch (option)
                 {
                     case SlotOptions.Use:
@@ -153,13 +157,13 @@ namespace XEntity.InventoryItemSystem
             CloseSlotOptionsMenu();
         }
 
-        // 인벤토리로 아이템을 전송합니다.
         private void OnTransferToInventoryClicked(ItemSlot slot, Interactor interactor)
         {
             Utils.TransferItemQuantity(slot, interactor.inventory, slot.itemCount);
         }
 
-        // 슬롯을 클릭했을 때 호출되는 메서드입니다.
+        //This method is called when a slot is clicked.
+        //The listeners on the slot option buttons are cleared and re-assigned based on the selected slot.
         protected void OnSlotClicked(ItemSlot slot, Interactor interactor)
         {
             if (slot.IsEmpty) return;
@@ -178,7 +182,7 @@ namespace XEntity.InventoryItemSystem
                 CloseSlotOptionsMenu();
             }
         }
-        // 슬롯 옵션 메뉴를 엽니다.
+
         private void OpenSlotOptionsMenu()
         {
             slotOptionsMenu.SetActive(false);
@@ -226,10 +230,7 @@ namespace XEntity.InventoryItemSystem
         //Checks for user inputs and updates the toggle state of the UI accordingly.
         protected void CheckForUIToggleInput()
         {
-            if (Input.GetKeyDown(UIToggleKey))
-            {
-                ToggleUI();
-            }
+            if (Input.GetKeyDown(UIToggleKey)) ToggleUI();
         }
 
         //Returns true if it's able to add the item to the container.
@@ -267,19 +268,13 @@ namespace XEntity.InventoryItemSystem
             //Tweens in/out the UI.
             if (mainContainerUI.gameObject.activeSelf && isContainerUIOpen)
             {
-                //Cursor.visible = false;
-                //Cursor.lockState = CursorLockMode.Locked;
                 isContainerUIOpen = false;
-                //StartCoroutine(Utils.TweenScaleOut(mainContainerUI.gameObject, 50, false));
-                mainContainerUI.gameObject.SetActive(false);
+                StartCoroutine(Utils.TweenScaleOut(mainContainerUI.gameObject, 50, false));
             }
             else if(!mainContainerUI.gameObject.activeSelf && !isContainerUIOpen)
             {
-                //Cursor.visible = true;
-                //Cursor.lockState = CursorLockMode.None;
                 isContainerUIOpen = true;
-                //StartCoroutine(Utils.TweenScaleIn(mainContainerUI.gameObject, 50, Vector3.one));
-                mainContainerUI.gameObject.SetActive(true);
+                StartCoroutine(Utils.TweenScaleIn(mainContainerUI.gameObject, 50, Vector3.one));
             }
         }
 

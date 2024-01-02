@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 489001707045447473}
   - component: {fileID: 3181943868735322514}
   - component: {fileID: -7884396907520260038}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RedPotion
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,9 +114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   harvestItem: {fileID: 11400000, guid: 942f593b85e18a949b42776736a861c7, type: 2}
-  layerMask:
+  layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!61 &-7884396907520260038
 BoxCollider2D:
   m_ObjectHideFlags: 0

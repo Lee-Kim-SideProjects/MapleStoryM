@@ -21,7 +21,7 @@ namespace XEntity.InventoryItemSystem.CustomEditors
             else
             {
                 //Go through all the currently selected objects and add the eligible items to the list.
-                foreach (UnityEngine.Object obj in Selection.objects)
+                foreach (Object obj in Selection.objects)
                 {
                     if (obj.GetType() == typeof(Item))
                     {

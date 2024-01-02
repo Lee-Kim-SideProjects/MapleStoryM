@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb37a5e4810a7744a6b9d1f88712c1d, type: 3}
   m_Name: HP_Potion
   m_EditorClassIdentifier: 
-  type: 0
+  type: 3
   itemName: HP_Potion
-  itemPerSlot: 0
+  itemPerSlot: 1
   icon: {fileID: 21300000, guid: 38875a06aba2b5440ace9b5fee4e647c, type: 3}
   prefab: {fileID: 3617355312830827704, guid: 9ae822355035dc846a1ad281e4b02edc, type: 3}
   itemInformation: "\uBD89\uC740 \uC57D\uCD08\uB85C \uB9CC\uB4E0 \uBB3C\uC57D\uC774\uB2E4.\n\uC0AC\uC6A9

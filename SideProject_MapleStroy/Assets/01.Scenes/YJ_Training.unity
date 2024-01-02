@@ -6243,9 +6243,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3181943868735322514, guid: 9ae822355035dc846a1ad281e4b02edc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181943868735322514, guid: 9ae822355035dc846a1ad281e4b02edc, type: 3}
+      propertyPath: layer.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 3617355312830827704, guid: 9ae822355035dc846a1ad281e4b02edc, type: 3}
       propertyPath: m_Name
       value: RedPotion
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617355312830827704, guid: 9ae822355035dc846a1ad281e4b02edc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617355312830827704, guid: 9ae822355035dc846a1ad281e4b02edc, type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     - target: {fileID: 5894342419470292273, guid: 9ae822355035dc846a1ad281e4b02edc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6686,7 +6702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &4628728335618350482
 CanvasRenderer:
   m_ObjectHideFlags: 0
