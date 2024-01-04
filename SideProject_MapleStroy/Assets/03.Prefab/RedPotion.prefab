@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 5894342419470292273}
   - component: {fileID: -4546171649829287776}
   - component: {fileID: 489001707045447473}
-  - component: {fileID: 3181943868735322514}
   - component: {fileID: -7884396907520260038}
+  - component: {fileID: 3181943868735322514}
+  - component: {fileID: -6433372676954448601}
+  - component: {fileID: -6218131866400111658}
   m_Layer: 12
   m_Name: RedPotion
   m_TagString: Item
@@ -101,22 +103,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3181943868735322514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3617355312830827704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca9f9f277c34ce34d9ad5d1244944ac8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  harvestItem: {fileID: 11400000, guid: 942f593b85e18a949b42776736a861c7, type: 2}
-  layer:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!61 &-7884396907520260038
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -162,3 +148,45 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.27, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &3181943868735322514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617355312830827704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca9f9f277c34ce34d9ad5d1244944ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  harvestItem: {fileID: 11400000, guid: 942f593b85e18a949b42776736a861c7, type: 2}
+  layer:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &-6433372676954448601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617355312830827704}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0dc731ca00755d429beaa0df9d0fae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {fileID: 0}
+--- !u!114 &-6218131866400111658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617355312830827704}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77fe2f94ec7e34b459a06043bcbff712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeSpeed: 0.5

@@ -6,23 +6,24 @@ namespace XEntity.InventoryItemSystem
     //This holds the different types of interaction events and interaction trigger methods.
     public class Interactor : MonoBehaviour
     {
-        //Reference to the main game viewing camera.
         [SerializeField] private Camera mainCamera;
 
-        //Reference to the item container thats dedicated to this interactor.
         public ItemContainer inventory;
 
-        //Reference to the current interactable target; always evaluated at runtime.
-        //This is null if there are no valid target interactable objects. 
         private InteractionTarget interactionTarget;
 
         //This is the position at which dropped items will be instantiated (in front of this interactor).
         public Vector3 ItemDropPosition { get { return transform.position + transform.forward; } }
 
+        public LayerMask layer;
+        private Item groundItemInfo;
+
+
         //Called every frame after the game is started.
         private void Update()
         {
             HandleInteractions();
+            SearchItem();
         }
 
         //This method draws gizmos in the editor.
@@ -95,6 +96,26 @@ namespace XEntity.InventoryItemSystem
             {
                 this.interactable = interactable;
                 this.gameObject = gameObject;
+            }
+        }
+
+        private void SearchItem()
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                var GroundItem = Physics2D.OverlapCircle(this.transform.position, 1f, layer);
+
+                if (GroundItem != null && GroundItem.CompareTag("Item"))
+                {
+                    //인벤토리에 추가
+                    GameObject groundItemObject = GroundItem.gameObject;
+                    groundItemInfo = GroundItem.GetComponent<InstantHarvest>().harvestItem;
+                    AddToInventory(groundItemInfo, groundItemObject);
+
+                    //줍는 모션
+                    GroundItem.gameObject.GetComponent<ItemFadeOut>().enabled = true;
+                    GroundItem.gameObject.GetComponent<ItemFollowPlayer>().enabled = true;
+                }
             }
         }
     }
