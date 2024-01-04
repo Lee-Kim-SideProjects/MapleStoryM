@@ -9,12 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5894342419470292273}
-  - component: {fileID: -4546171649829287776}
   - component: {fileID: 489001707045447473}
+  - component: {fileID: -1438447741619797206}
+  - component: {fileID: -6535067790965637486}
   - component: {fileID: -7884396907520260038}
+  - component: {fileID: -4546171649829287776}
   - component: {fileID: 3181943868735322514}
   - component: {fileID: -6433372676954448601}
-  - component: {fileID: -6218131866400111658}
+  - component: {fileID: 6360119507640376622}
   m_Layer: 12
   m_Name: RedPotion
   m_TagString: Item
@@ -37,20 +39,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4546171649829287776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3617355312830827704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0375fb6aae2da3448848e4e9fd2cd0f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 0
-  harvestDrops: []
 --- !u!212 &489001707045447473
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -103,7 +91,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-7884396907520260038
+--- !u!50 &-1438447741619797206
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617355312830827704}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0.2
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &-6535067790965637486
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,6 +147,51 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.27, y: 0.3}
+    newSize: {x: 0.27, y: 0.3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.27, y: 0.2}
+  m_EdgeRadius: 0
+--- !u!61 &-7884396907520260038
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617355312830827704}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 3072
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -148,6 +208,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.27, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &-4546171649829287776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617355312830827704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0375fb6aae2da3448848e4e9fd2cd0f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 0
+  harvestDrops: []
 --- !u!114 &3181943868735322514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,9 +235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   harvestItem: {fileID: 11400000, guid: 942f593b85e18a949b42776736a861c7, type: 2}
-  layer:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!114 &-6433372676954448601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,17 +247,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0dc731ca00755d429beaa0df9d0fae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPosition: {fileID: 0}
---- !u!114 &-6218131866400111658
+  targetPosition: {fileID: 9216364606891185945, guid: 543f110440c79a24390a31b00aaf82d7, type: 3}
+--- !u!114 &6360119507640376622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3617355312830827704}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77fe2f94ec7e34b459a06043bcbff712, type: 3}
+  m_Script: {fileID: 11500000, guid: 02d55ceda1374c24da3108ae49690789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSpeed: 0.5
+  rotationSpeed: 700
+  jumpForce: 4

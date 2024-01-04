@@ -113,7 +113,6 @@ namespace XEntity.InventoryItemSystem
                     AddToInventory(groundItemInfo, groundItemObject);
 
                     //줍는 모션
-                    GroundItem.gameObject.GetComponent<ItemFadeOut>().enabled = true;
                     GroundItem.gameObject.GetComponent<ItemFollowPlayer>().enabled = true;
                 }
             }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f8f43511d00c3f4299b70415bee4de6, type: 3}
+  m_Name: Soward
+  m_EditorClassIdentifier: 
+  weapontype: 0
+  weaponName: "\uD55C \uC190 \uAC80"
+  weaponIcon: {fileID: 21300000, guid: 2f7d7b5c01bcd204cafc3cf6022f1407, type: 3}
+  weaponPrefab: {fileID: 21300000, guid: 7f4c18f4b70f8814b84e6a6a0a349faf, type: 3}
+  weaponRandomDrop: 5
+  weaponDamage: 10
+  weaponInformation: "\uD3C9\uBC94\uD55C \uD55C \uC190 \uAC80\uC774\uB2E4."

@@ -1,20 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class MonsterController : MonoBehaviour
 {
-    public MonsterData monsterData;
-    public HealthBar healthBar;
-    Animator anim;
-    Rigidbody2D rigid;
+    private Animator anim;
+    private Rigidbody2D rigid;
 
+    //몬스터 스테이터스
+    public MonsterData monsterData;
     private int maxHp;
     public int currentHp;
     private int monsterLevel;
     private int monsterDefensive;
     private int monsterNukback;
+    public HealthBar healthBar;
+
+    //몬스터 드랍 아이템 데이터
+    public ItemDropTableData dropTableData;
 
     private void Start()
     {
@@ -65,15 +70,38 @@ public class MonsterController : MonoBehaviour
 
     IEnumerator Die()
     {
-        // 캐릭터 경험치 추가
-
         //죽는 모션
         anim.SetBool("isDie",true);
         // 움직이는 스크립트 정지
         rigid.constraints = RigidbodyConstraints2D.FreezeAll;
         // 죽는 사운드
 
+        // 캐릭터 경험치 추가
+
+        // 아이템 드랍
+        DropItem();
+
         yield return new WaitForSeconds(1.0f);
         gameObject.SetActive(false);
+    }
+
+    void DropItem()
+    {
+        //드랍 데이터 가져오기
+        foreach (ItemDropTableData.DropItems dropItem in dropTableData.items)
+        {
+            GameObject item = dropItem.dropItem;
+            int chance = dropItem.dropChance;
+            //확률 100분위
+            int SuccessItem = UnityEngine.Random.Range(1, 100);
+
+            if(chance >= SuccessItem)
+            {
+                Instantiate(item, transform.position ,Quaternion.identity);
+            }
+
+            // 여기에서 가져온 정보를 사용하거나 처리합니다.
+            UnityEngine.Debug.Log($"Item: {item.name}, Drop Chance: {chance}%");
+        }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb37a5e4810a7744a6b9d1f88712c1d, type: 3}
   m_Name: HP_Potion
   m_EditorClassIdentifier: 
-  type: 3
+  type: 0
   itemName: HP_Potion
   itemPerSlot: 1
   icon: {fileID: 21300000, guid: 38875a06aba2b5440ace9b5fee4e647c, type: 3}
