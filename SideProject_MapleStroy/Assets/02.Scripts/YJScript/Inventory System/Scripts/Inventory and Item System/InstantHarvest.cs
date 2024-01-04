@@ -22,12 +22,19 @@ namespace XEntity.InventoryItemSystem
 
         public void AttemptHarvest(Interactor harvestor) 
         {
-            if (!isHarvested)
+            if (harvestItem != null && gameObject != null)
             {
-                if (harvestor.AddToInventory(harvestItem, gameObject))
+                if (!isHarvested)
                 {
-                    isHarvested = true;
+                    if (harvestor.AddToInventory(harvestItem, gameObject))
+                    {
+                        isHarvested = true;
+                    }
                 }
+            }
+            else
+            {
+                Debug.LogError("harvestItem or gameObject is null.");
             }
         }
         void OnTriggerEnter2D(Collider2D col)

@@ -43,3 +43,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Inventory
+    uniqueID: 884368805
+    locked: 0
