@@ -13,6 +13,20 @@ namespace XEntity.InventoryItemSystem
         //The item that will be harvested on click.
         public Item harvestItem;
 
+        private Animator anim;
+        public LayerMask layer;
+
+
+        void Start()
+        {
+            anim = GetComponent<Animator>();
+        }
+
+        void Update()
+        {
+            PressGetHarvester();
+        }
+
         //The item is instantly added to the inventory of the interactor on interact.
         public void OnClickInteract(Interactor interactor)
         {
@@ -37,14 +51,21 @@ namespace XEntity.InventoryItemSystem
                 Debug.LogError("harvestItem or gameObject is null.");
             }
         }
-        void OnTriggerEnter2D(Collider2D col)
+        void PressGetHarvester()
         {
-            if (col != null && col.CompareTag("Player"))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                Interactor interactor = col.GetComponent<Interactor>();
-                if (interactor != null)
+                var Grounditem = Physics2D.OverlapCircle(this.transform.position, 1f, layer);
+
+                if (Grounditem != null)
                 {
-                    AttemptHarvest(interactor);
+                    if (Grounditem.CompareTag("Player")) { }
+                    Interactor interactor = Grounditem.GetComponent<Interactor>();
+                    if (interactor != null)
+                    {
+                        AttemptHarvest(interactor);
+                        anim.SetTrigger("Get");
+                    }
                 }
             }
         }
