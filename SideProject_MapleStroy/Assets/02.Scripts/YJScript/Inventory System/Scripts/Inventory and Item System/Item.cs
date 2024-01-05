@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace XEntity.InventoryItemSystem
@@ -22,5 +23,10 @@ namespace XEntity.InventoryItemSystem
         public string itemInformation;
 
         #endregion
+
+        public string ItemName
+        {
+            get { return itemName; }
+        }
     }
 }

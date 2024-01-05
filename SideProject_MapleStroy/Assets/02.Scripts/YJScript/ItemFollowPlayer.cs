@@ -12,6 +12,12 @@ public class ItemFollowPlayer : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
+
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            targetPosition = playerObject.transform;
+        }
     }
 
     void Update()

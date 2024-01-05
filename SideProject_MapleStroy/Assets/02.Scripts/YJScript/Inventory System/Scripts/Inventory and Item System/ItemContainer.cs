@@ -236,7 +236,9 @@ namespace XEntity.InventoryItemSystem
         //Returns true if it's able to add the item to the container.
         public bool AddItem(Item item)
         {
-            for (int i = 0; i < slots.Length; i++) if (slots[i].Add(item)) return true;
+            for (int i = 0; i < slots.Length; i++) 
+                if (slots[i].Add(item)) 
+                    return true;
             return false;
         }
 
@@ -268,13 +270,15 @@ namespace XEntity.InventoryItemSystem
             //Tweens in/out the UI.
             if (mainContainerUI.gameObject.activeSelf && isContainerUIOpen)
             {
+                mainContainerUI.gameObject.SetActive(false);
                 isContainerUIOpen = false;
-                StartCoroutine(Utils.TweenScaleOut(mainContainerUI.gameObject, 50, false));
+                //StartCoroutine(Utils.TweenScaleOut(mainContainerUI.gameObject, 50, false));
             }
             else if(!mainContainerUI.gameObject.activeSelf && !isContainerUIOpen)
             {
+                mainContainerUI.gameObject.SetActive(true);
                 isContainerUIOpen = true;
-                StartCoroutine(Utils.TweenScaleIn(mainContainerUI.gameObject, 50, Vector3.one));
+                //StartCoroutine(Utils.TweenScaleIn(mainContainerUI.gameObject, 50, Vector3.one));
             }
         }
 

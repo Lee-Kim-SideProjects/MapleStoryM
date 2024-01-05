@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace XEntity.InventoryItemSystem
@@ -18,6 +19,7 @@ namespace XEntity.InventoryItemSystem
         public LayerMask layer;
         private Item groundItemInfo;
 
+        private int plusMoney;
 
         //Called every frame after the game is started.
         private void Update()
@@ -110,7 +112,36 @@ namespace XEntity.InventoryItemSystem
                     //인벤토리에 추가
                     GameObject groundItemObject = GroundItem.gameObject;
                     groundItemInfo = GroundItem.GetComponent<InstantHarvest>().harvestItem;
-                    AddToInventory(groundItemInfo, groundItemObject);
+                    
+                    //돈을 주우면 인벤에 추가X
+                    if (groundItemInfo.type != ItemType.Money) 
+                    {
+                        AddToInventory(groundItemInfo, groundItemObject);
+                    }
+                    else
+                    {
+                        string itemName = groundItemInfo.ItemName;
+                        switch (itemName)
+                        {
+                            case "Bronze":
+                                plusMoney = UnityEngine.Random.Range(1, 10);
+                                break;
+
+                            case "Gold":
+                                plusMoney = UnityEngine.Random.Range(10, 100);
+                                break;
+
+                            case "Money":
+                                plusMoney = UnityEngine.Random.Range(100, 1000);
+                                break;
+
+                            case "Flex":
+                                plusMoney = UnityEngine.Random.Range(1000, 1000);
+                                break;
+                        }
+                        ItemManager.Instance.haveMoney += plusMoney;
+                        Destroy(groundItemObject, 1f);
+                    }
 
                     //줍는 모션
                     GroundItem.gameObject.GetComponent<ItemFollowPlayer>().enabled = true;

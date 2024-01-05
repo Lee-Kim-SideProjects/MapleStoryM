@@ -20,7 +20,7 @@ namespace XEntity.InventoryItemSystem
         private UnityEngine.UI.Image iconImage;
 
         //The text for displaying the itemCount.
-        public TextMeshProUGUI countText;
+        private TextMeshProUGUI countText;
 
         public void Initialize() 
         {

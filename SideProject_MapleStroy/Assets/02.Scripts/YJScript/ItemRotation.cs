@@ -6,7 +6,7 @@ public class ItemRotation : MonoBehaviour
     public int rotationSpeed = 700;
     public int jumpForce = 50;
 
-    private bool isGround = true;
+    private bool isGround = false;
     private Rigidbody2D rigid;
 
     void Start()
@@ -16,7 +16,6 @@ public class ItemRotation : MonoBehaviour
         if (rigid != null)
         {
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            UnityEngine.Debug.Log("ss");
         }
     }
 
@@ -27,7 +26,7 @@ public class ItemRotation : MonoBehaviour
 
     void ItemRotate()
     {
-        if(isGround)
+        if(!isGround)
             transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
     }
 
@@ -35,7 +34,7 @@ public class ItemRotation : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         // 회전 멈춤
-        isGround = false;
+        isGround = true;
         // 현재 속도를 초기화
         rigid.velocity = Vector2.zero;
         // 회전 초기화

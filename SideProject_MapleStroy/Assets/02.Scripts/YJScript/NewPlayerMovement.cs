@@ -94,8 +94,8 @@ public class NewPlayerMovement : MonoBehaviour
             {
                 if (rayHit.distance < 0.8f)
                 {
-                    anim_Body.SetBool("isJump", false);
-                    anim_Arm.SetBool("isJump", false);
+                    //anim_Body.SetBool("isJump", false);
+                    //anim_Arm.SetBool("isJump", false);
                 }
             }
             else

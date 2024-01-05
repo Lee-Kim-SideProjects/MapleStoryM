@@ -18,6 +18,9 @@ namespace XEntity.InventoryItemSystem
         //Either assign the items manually when created or select the item scriptable object > right click > select Add To Item List 
         public List<Item> itemList = new List<Item>();
 
+        public int haveMoney;
+
+
         private void Awake()
         {
             //Singleton logic
