@@ -12,4 +12,6 @@ public class ItemDropTableData : ScriptableObject
         public int dropChance;
     }
     public List<DropItems> items = new List<DropItems>();
+
+    public float monsterEXP;
 }

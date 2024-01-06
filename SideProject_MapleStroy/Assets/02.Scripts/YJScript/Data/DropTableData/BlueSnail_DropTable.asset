@@ -17,3 +17,4 @@ MonoBehaviour:
     dropChance: 70
   - dropItem: {fileID: 7441128474579867135, guid: dccaec5a4ee2dea4c9ca1d3da80d05d8, type: 3}
     dropChance: 100
+  monsterEXP: 10

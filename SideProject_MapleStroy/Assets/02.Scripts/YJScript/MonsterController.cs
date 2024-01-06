@@ -4,104 +4,112 @@ using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MonsterController : MonoBehaviour
+namespace XEntity.InventoryItemSystem
 {
-    private Animator anim;
-    private Rigidbody2D rigid;
-
-    //몬스터 스테이터스
-    public MonsterData monsterData;
-    private int maxHp;
-    public int currentHp;
-    private int monsterLevel;
-    private int monsterDefensive;
-    private int monsterNukback;
-    public HealthBar healthBar;
-
-    //몬스터 드랍 아이템 데이터
-    public ItemDropTableData dropTableData;
-
-    private void Start()
+    public class MonsterController : MonoBehaviour
     {
-        // 시작할 때 데이터 가져오기
-        maxHp = monsterData.hp;
-        currentHp = monsterData.hp;
-        monsterLevel = monsterData.level;
-        monsterDefensive = monsterData.defensive;
-        monsterNukback = monsterData.nukback;
+        private Animator anim;
+        private Rigidbody2D rigid;
 
-        //체력바 초기화
-        healthBar.SetHealth(currentHp, maxHp);
-    }
+        //몬스터 스테이터스
+        public MonsterData monsterData;
+        private int maxHp;
+        public int currentHp;
+        private int monsterLevel;
+        private int monsterDefensive;
+        private int monsterNukback;
+        public HealthBar healthBar;
 
-    private void Update()
-    {
-        healthBar.SetHealth(currentHp, maxHp);
-        // 몬스터의 체력이 0 이하면 죽음 처리
-        if (currentHp <= 0)
-            if (!anim.GetBool("isDie"))
-                StartCoroutine("Die");
-    }
-    private void OnEnable()
-    {
-        anim = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody2D>();
-        //값 초기화
-        currentHp = monsterData.hp;
-        healthBar.SetHealth(currentHp, maxHp);
-        if ((rigid.constraints & RigidbodyConstraints2D.FreezePositionX) != 0)
+        //몬스터 드랍 아이템 데이터
+        public ItemDropTableData dropTableData;
+
+        private void Start()
         {
-            rigid.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+            // 시작할 때 데이터 가져오기
+            maxHp = monsterData.hp;
+            currentHp = monsterData.hp;
+            monsterLevel = monsterData.level;
+            monsterDefensive = monsterData.defensive;
+            monsterNukback = monsterData.nukback;
+
+            //체력바 초기화
+            healthBar.SetHealth(currentHp, maxHp);
         }
-    }
 
-    // 피해를 받는 함수
-    public void TakeDamage(int damageAmount)
-    {
-        // 몬스터의 체력에서 피해만큼 감소
-        currentHp -= damageAmount;
-
-        // 체력이 음수가 되지 않도록 보정
-        currentHp = Mathf.Max(0, currentHp);
-
-        //체력바 스크립트 호출
-        healthBar.SetHealth(currentHp, maxHp);
-    }
-
-    IEnumerator Die()
-    {
-        //죽는 모션
-        anim.SetBool("isDie",true);
-        // 움직이는 스크립트 정지
-        rigid.constraints = RigidbodyConstraints2D.FreezeAll;
-        // 죽는 사운드
-
-        // 캐릭터 경험치 추가
-
-        // 아이템 드랍
-        DropItem();
-
-        yield return new WaitForSeconds(1.0f);
-        gameObject.SetActive(false);
-    }
-
-    void DropItem()
-    {
-        //드랍 데이터 가져오기
-        foreach (ItemDropTableData.DropItems dropItem in dropTableData.items)
+        private void Update()
         {
-            GameObject item = dropItem.dropItem;
-            int chance = dropItem.dropChance;
-            //확률 100분위
-            int SuccessItem = UnityEngine.Random.Range(1, 100);
-
-            if(chance >= SuccessItem)
+            healthBar.SetHealth(currentHp, maxHp);
+            // 몬스터의 체력이 0 이하면 죽음 처리
+            if (currentHp <= 0)
+                if (!anim.GetBool("isDie"))
+                    StartCoroutine("Die");
+        }
+        private void OnEnable()
+        {
+            anim = GetComponent<Animator>();
+            rigid = GetComponent<Rigidbody2D>();
+            //몬스터 초기값으로 초기화
+            currentHp = monsterData.hp;
+            healthBar.SetHealth(currentHp, maxHp);
+            if ((rigid.constraints & RigidbodyConstraints2D.FreezePositionX) != 0)
             {
-                Instantiate(item, transform.position ,Quaternion.identity);
+                rigid.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
             }
+        }
 
-            // 여기에서 가져온 정보를 사용하거나 처리합니다.
-            UnityEngine.Debug.Log($"Item: {item.name}, Drop Chance: {chance}%");
+        // 피해를 받는 함수
+        public void TakeDamage(int damageAmount)
+        {
+            // 몬스터의 체력에서 피해만큼 감소
+            currentHp -= damageAmount;
+
+            // 체력이 음수가 되지 않도록 보정
+            currentHp = Mathf.Max(0, currentHp);
+
+            //체력바 스크립트 호출
+            healthBar.SetHealth(currentHp, maxHp);
+        }
+
+        IEnumerator Die()
+        {
+            //죽는 모션
+            anim.SetBool("isDie", true);
+            // 움직이는 스크립트 정지
+            rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+            // 죽는 사운드
+
+            // 캐릭터 경험치 추가
+            PlusMonsterEXP();
+            // 아이템 드랍
+            DropItem();
+
+            yield return new WaitForSeconds(1.0f);
+            gameObject.SetActive(false);
+        }
+
+        void DropItem()
+        {
+            //드랍 데이터 가져오기
+            foreach (ItemDropTableData.DropItems dropItem in dropTableData.items)
+            {
+                GameObject item = dropItem.dropItem;
+                int chance = dropItem.dropChance;
+                //아이템 드랍 확률
+                int SuccessItem = UnityEngine.Random.Range(1, 100);
+                if (chance >= SuccessItem)
+                {
+                    Instantiate(item, transform.position, Quaternion.identity);
+                }
+
+                UnityEngine.Debug.Log($"Item: {item.name}, Drop Chance: {chance}%");
+            }
+        }
+
+        void PlusMonsterEXP()
+        {
+            //StatusManager.Instance.currentEXP += dropTableData.monsterEXP;
+            float PlusEXP = dropTableData.monsterEXP;
+            StatusManager.Instance.SumEXP(PlusEXP);
         }
     }
 }
