@@ -1,6 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
-using System.Diagnostics;
 
 namespace XEntity.InventoryItemSystem
 {
@@ -17,7 +17,7 @@ namespace XEntity.InventoryItemSystem
         public bool IsEmpty { get { return itemCount <= 0; } }
 
         //The image for displaying the item icon.
-        private UnityEngine.UI.Image iconImage;
+        private Image iconImage;
 
         //The text for displaying the itemCount.
         private TextMeshProUGUI countText;
@@ -25,8 +25,8 @@ namespace XEntity.InventoryItemSystem
         public void Initialize() 
         {
             //The UI variables are assigned here.
-            iconImage = transform.Find("Icon Image").GetComponent<UnityEngine.UI.Image>();
-            countText = transform.Find("Count Text").GetComponent<TextMeshProUGUI> ();
+            iconImage = transform.Find("IconImage").GetComponent<Image>();
+            countText = transform.Find("CountText").GetComponent<TextMeshProUGUI> ();
 
             iconImage.gameObject.SetActive(false);
             countText.text = string.Empty;

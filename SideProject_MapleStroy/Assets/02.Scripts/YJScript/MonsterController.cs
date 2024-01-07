@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Unity.VisualScripting;
+//using Unity.VisualScripting;
 using UnityEngine;
 
 namespace XEntity.InventoryItemSystem
@@ -95,13 +94,13 @@ namespace XEntity.InventoryItemSystem
                 GameObject item = dropItem.dropItem;
                 int chance = dropItem.dropChance;
                 //아이템 드랍 확률
-                int SuccessItem = UnityEngine.Random.Range(1, 100);
+                int SuccessItem = Random.Range(1, 100);
                 if (chance >= SuccessItem)
                 {
                     Instantiate(item, transform.position, Quaternion.identity);
                 }
 
-                UnityEngine.Debug.Log($"Item: {item.name}, Drop Chance: {chance}%");
+                Debug.Log($"Item: {item.name}, Drop Chance: {chance}%");
             }
         }
 

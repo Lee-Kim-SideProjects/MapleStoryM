@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-//using static System.Net.Mime.MediaTypeNames;
 
 namespace XEntity.InventoryItemSystem
 {
@@ -12,9 +11,10 @@ namespace XEntity.InventoryItemSystem
         public static StatusManager Instance { get; private set; }
 
         //스테이터스
-        private float maxHP = 50;
+        public string nickName;
+        internal float maxHP = 50; // internal = 같은 어셈블리에서만 접근 가능
         public float currentHP = 50;
-        private float maxMP = 30;
+        internal float maxMP = 30;
         public float currentMP = 30;
         public int level = 1;
         public float currentEXP = 0; //현재 경험치
@@ -29,9 +29,10 @@ namespace XEntity.InventoryItemSystem
         private float LvPercent; //경험치 백분율 계산
 
         //텍스트
+        private TextMeshProUGUI nickNameText;
         private TextMeshProUGUI HPText;
         private TextMeshProUGUI MPText;
-        private TextMeshProUGUI LvText; //레벨 표시
+        private TextMeshProUGUI LvText;
         private TextMeshProUGUI LvPercentText; //경험치바 %표시
 
         //이미지 바
@@ -58,6 +59,9 @@ namespace XEntity.InventoryItemSystem
 
         void Start()
         {
+            //StatusManager의 닉네임으로 교체
+            nickNameText = GameObject.Find("NickNameText").GetComponent<TextMeshProUGUI>();
+            nickNameText.text = nickName;
             HPText = GameObject.Find("HPText").GetComponent<TextMeshProUGUI>();
             MPText = GameObject.Find("MPText").GetComponent<TextMeshProUGUI>();
             LvText = GameObject.Find("LvText").GetComponent<TextMeshProUGUI>();
