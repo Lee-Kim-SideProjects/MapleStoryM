@@ -6,9 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     public float maxSpeed;
     public float jumpPower;
-    Rigidbody2D rigid;
-    SpriteRenderer spriteRenderer;
-    Animator anim;
+    public GameObject ctrlEffect;
+    private Rigidbody2D rigid;
+    private SpriteRenderer spriteRenderer;
+    private Animator anim;
 
     private bool attackFinsh = true;
 
@@ -36,7 +37,17 @@ public class PlayerMovement : MonoBehaviour
 
         //방향 전환
         if (Input.GetButton("Horizontal"))
+        {
+            //캐릭터 방향전환
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == 1;
+
+            //ctrl키 스킬 이펙트 방향전환
+            float horizontalInput = Input.GetAxisRaw("Horizontal");
+            if (horizontalInput < 0)
+                ctrlEffect.transform.localScale = new Vector3(1, 1, 1);
+            else if (horizontalInput > 0)
+                ctrlEffect.transform.localScale = new Vector3(-1, 1, 1);
+        }
 
         //애니메이션 전환
         if (Mathf.Abs(rigid.velocity.x) < 0.2)
@@ -80,24 +91,28 @@ public class PlayerMovement : MonoBehaviour
 
     void BaseAttack()
     {
-        if (attackFinsh)
+        if (attackFinsh && !ctrlEffect.gameObject.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                attackFinsh = false;
+                ctrlEffect.SetActive(true);
+                //모션
                 anim.SetTrigger("isAttack");
-                Invoke("DelayBaseAttack", 0.9f);
+                //딜레이
+                attackFinsh = false;
+                Invoke("DelayBaseAttack", 1f);
             }
         }
     }
     void DelayBaseAttack()
     {
         attackFinsh = true;
+        ctrlEffect.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
             OnDamaged(other.transform.position);
     }
 

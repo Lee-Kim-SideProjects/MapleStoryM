@@ -71,8 +71,8 @@ namespace XEntity.InventoryItemSystem
 
         void CalculateStatPower() //스공 계산법 (주스텟*4 + 부스텟*1)     //나중에 무기 공격력 등 추가
         {
-            minStatPower = (STR * 4 + DEX) * 0.8f;
-            maxStatPower = (STR * 4 + DEX) * 1.5f;
+            minStatPower = (LUK * 4 + DEX) * 0.8f;
+            maxStatPower = (LUK * 4 + DEX) * 1.5f;
         }
 
         void OpenCloseStatUI() // UI 켜기 끄기
@@ -112,7 +112,7 @@ namespace XEntity.InventoryItemSystem
 
         public void OnClickAutoUP() // 자동분배 키
         {
-            STR += abilityPoint;
+            LUK += abilityPoint;
             abilityPoint = 0;
         }
         public void OnClickSTRUp() // STR 개별 UP키
