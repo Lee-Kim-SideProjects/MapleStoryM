@@ -131,6 +131,11 @@ namespace XEntity.InventoryItemSystem
             currentMP = maxMP;
         }
 
+        public void MonsterDamage(int damage)
+        {
+            currentHP -= damage;
+        }
+
         void Die()
         {
             if(currentHP <= 0)

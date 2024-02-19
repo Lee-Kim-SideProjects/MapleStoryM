@@ -110,13 +110,7 @@ public class PlayerMovement : MonoBehaviour
         ctrlEffect.SetActive(false);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-            OnDamaged(other.transform.position);
-    }
-
-    void OnDamaged(Vector2 targetPos)
+    public void OnDamaged(Vector2 targetPos)
     {
         //무적 레이어로 이동
         gameObject.layer = 11;
@@ -127,7 +121,6 @@ public class PlayerMovement : MonoBehaviour
         //튕겨 나가기 
         int dirc = transform.position.x - targetPos.x > 0 ? 5 : -5;
         rigid.AddForce(new Vector2(dirc, 5), ForceMode2D.Impulse);
-        //rigid.AddForce(new Vector2(dirc * 10, 10), ForceMode2D.Impulse);
 
         Invoke("OffDamaged", 1f);
     }

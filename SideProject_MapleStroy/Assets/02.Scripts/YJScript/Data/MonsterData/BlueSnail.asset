@@ -18,7 +18,7 @@ MonoBehaviour:
   hp: 15
   exp: 3
   speed: 65
-  damage: 2
+  damage: 15
   accarcy: 10
   defensive: 0
   nukback: 5

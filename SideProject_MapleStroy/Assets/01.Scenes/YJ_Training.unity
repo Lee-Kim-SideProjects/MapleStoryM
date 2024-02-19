@@ -4517,7 +4517,7 @@ GameObject:
   - component: {fileID: 616122122}
   - component: {fileID: 616122124}
   - component: {fileID: 616122123}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: LuckySevenEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8682,7 +8682,7 @@ GameObject:
   - component: {fileID: 1452856617}
   - component: {fileID: 1452856619}
   - component: {fileID: 1452856618}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: CtrlEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

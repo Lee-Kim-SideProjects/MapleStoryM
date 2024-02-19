@@ -14,6 +14,7 @@ namespace XEntity.InventoryItemSystem
         private int maxHp;
         public int currentHp;
         private int monsterLevel;
+        private int monsterDamage;
         private int monsterDefensive;
         private int monsterNukback;
         public HealthBar healthBar;
@@ -27,6 +28,7 @@ namespace XEntity.InventoryItemSystem
             maxHp = monsterData.hp;
             currentHp = monsterData.hp;
             monsterLevel = monsterData.level;
+            monsterDamage = monsterData.damage;
             monsterDefensive = monsterData.defensive;
             monsterNukback = monsterData.nukback;
 
@@ -108,6 +110,15 @@ namespace XEntity.InventoryItemSystem
             //StatusManager.Instance.currentEXP += dropTableData.monsterEXP;
             float PlusEXP = dropTableData.monsterEXP;
             StatusManager.Instance.SumEXP(PlusEXP);
+        }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                other.gameObject.GetComponent<PlayerMovement>().OnDamaged(this.transform.position);
+                StatusManager.Instance.MonsterDamage(monsterDamage);
+            }
         }
     }
 }
