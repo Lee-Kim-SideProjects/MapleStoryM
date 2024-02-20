@@ -7,6 +7,8 @@ namespace XEntity.InventoryItemSystem
 {
     public class StatManager : MonoBehaviour
     {
+        public static StatManager Instance { get; private set; }
+
         public GameObject StatUI;
         public GameObject StatDetailUI;
 
@@ -14,15 +16,15 @@ namespace XEntity.InventoryItemSystem
         private string job = "초보자";
         private string guild = "없음";
         private int famous=0;
-        private float minStatPower;
-        private float maxStatPower;
+        internal float minStatPower;
+        internal float maxStatPower;
         private float hp;
         private float mp;
         private int abilityPoint = 0;
-        private int STR = 5;
-        private int DEX = 5;
-        private int INT = 5;
-        private int LUK = 5;
+        internal int STR = 5;
+        internal int DEX = 5;
+        internal int INT = 5;
+        internal int LUK = 5;
 
         public TextMeshProUGUI StatText;
         public TextMeshProUGUI AbilityPointText;
@@ -30,6 +32,22 @@ namespace XEntity.InventoryItemSystem
 
         private int currentLevel; //StatusManagerLevel과 비교 대상
         private int StatusManagerLevel; //StatusManager에서 가져온 level
+
+        void Awake()
+        {
+            #region Singleton
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+                return;
+            }
+            #endregion
+        }
 
         void Start()
         {

@@ -8,6 +8,7 @@ namespace XEntity.InventoryItemSystem
     {
         private Animator anim;
         private Rigidbody2D rigid;
+        private BoxCollider2D monsterCollider;
 
         //몬스터 스테이터스
         public MonsterData monsterData;
@@ -48,9 +49,15 @@ namespace XEntity.InventoryItemSystem
         {
             anim = GetComponent<Animator>();
             rigid = GetComponent<Rigidbody2D>();
+            monsterCollider = GetComponent<BoxCollider2D>();
             //몬스터 초기값으로 초기화
+            //HP 초기화
             currentHp = monsterData.hp;
+            //HP바 초기화
             healthBar.SetHealth(currentHp, maxHp);
+            //콜라이더 켜기
+            monsterCollider.enabled = true;
+
             if ((rigid.constraints & RigidbodyConstraints2D.FreezePositionX) != 0)
             {
                 rigid.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
@@ -82,6 +89,8 @@ namespace XEntity.InventoryItemSystem
             PlusMonsterEXP();
             // 아이템 드랍
             DropItem();
+            //콜라이더 끄기
+            monsterCollider.enabled = false;
 
             yield return new WaitForSeconds(1.0f);
             gameObject.SetActive(false);

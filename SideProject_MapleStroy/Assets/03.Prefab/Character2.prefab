@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.32, y: 0.54, z: 0}
-  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -124,6 +124,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 5
   jumpPower: 5
+  doubleJumpPower: 0
+  ctrlEffect: {fileID: 0}
+  doubleJumpEffect: {fileID: 0}
+  doubleJumpEffectPos: {fileID: 0}
 --- !u!61 &8182308483824919748
 BoxCollider2D:
   m_ObjectHideFlags: 0

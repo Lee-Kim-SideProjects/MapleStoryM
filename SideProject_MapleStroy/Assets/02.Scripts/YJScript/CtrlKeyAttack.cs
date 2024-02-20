@@ -13,6 +13,7 @@ namespace XEntity.InventoryItemSystem
         void Awake()
         {
             attackCollider = gameObject.GetComponent<BoxCollider2D>();
+            anim = GetComponent<Animator>();
         }
 
         private void OnEnable()
@@ -29,9 +30,17 @@ namespace XEntity.InventoryItemSystem
             if (col.gameObject.CompareTag("Enemy"))
             {
                 //데미지 주기
-                damage = Random.Range(40, 60);
+                CalculateDamage();
+
                 col.GetComponent<MonsterController>().TakeDamage(damage);
             }
+        }
+
+        void CalculateDamage()
+        {
+            float FloatDamage = Random.Range(StatManager.Instance.minStatPower, StatManager.Instance.maxStatPower);
+            damage = (int)FloatDamage;
+            Debug.Log(damage);
         }
 
         void OffAttack()
