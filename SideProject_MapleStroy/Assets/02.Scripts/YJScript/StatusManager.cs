@@ -40,6 +40,8 @@ namespace XEntity.InventoryItemSystem
         public Image mpBar;
         public Image expBar;
 
+        //레벨업 이펙트
+        public Animator anim;
 
         void Awake()
         {
@@ -87,7 +89,7 @@ namespace XEntity.InventoryItemSystem
 
         public void SumEXP(float PlusEXP)// 경험치 들어오면 계산
         {
-            UnityEngine.Debug.Log(PlusEXP);
+            //UnityEngine.Debug.Log(PlusEXP);
             currentEXP += PlusEXP;
             UpdateExpBar();
         }
@@ -98,6 +100,7 @@ namespace XEntity.InventoryItemSystem
             {
                 currentEXP -= exp;
                 level++;
+                anim.SetTrigger("isLevelUp");
                 CalculateEXP();
             }
 
@@ -140,8 +143,9 @@ namespace XEntity.InventoryItemSystem
         {
             if(currentHP <= 0)
             {
+                currentHP = 0;
                 // 경험치 30% 감소
-                currentEXP = currentEXP * 0.7f;
+                currentEXP = currentEXP * 0.5f;
             }
         }
     }

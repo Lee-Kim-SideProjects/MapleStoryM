@@ -33,6 +33,7 @@ namespace XEntity.InventoryItemSystem
                 CalculateDamage();
 
                 col.GetComponent<MonsterController>().TakeDamage(damage);
+                col.GetComponent<DamageText>().DamageOneByOne(damage);
             }
         }
 
