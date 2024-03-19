@@ -59,12 +59,4 @@ public class MonsterMovement : MonoBehaviour
         CancelInvoke();
         Invoke("Think", 2);
     }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            
-        }
-    }
 }
