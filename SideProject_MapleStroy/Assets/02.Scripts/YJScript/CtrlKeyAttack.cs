@@ -33,7 +33,7 @@ namespace XEntity.InventoryItemSystem
                 CalculateDamage();
 
                 col.GetComponent<MonsterController>().TakeDamage(damage);
-                col.GetComponent<DamageText>().DamageOneByOne(damage);
+                //col.GetComponent<DamageText>().DamageOneByOne(damage);
             }
         }
 
@@ -41,7 +41,7 @@ namespace XEntity.InventoryItemSystem
         {
             float FloatDamage = Random.Range(StatManager.Instance.minStatPower, StatManager.Instance.maxStatPower);
             damage = (int)FloatDamage;
-            Debug.Log(damage);
+            //Debug.Log("Damage : " + damage);
         }
 
         void OffAttack()

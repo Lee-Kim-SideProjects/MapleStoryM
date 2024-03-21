@@ -2,32 +2,32 @@ using UnityEngine;
 
 namespace XEntity.InventoryItemSystem
 {
-    //This script is attached to the item collector objects.
-    //Item collectors are floating items prefabs in the scene that can be picked up by the interactor on collision.
+    //이 스크립트는 아이템 수집기 오브젝트에 첨부됩니다.
+    //아이템 수집기는 씬에 있는 부유하는 아이템 프리팹으로, 상호작용자가 충돌하여 가져갈 수 있습니다.
     public class ItemCollector : MonoBehaviour
     {
         private Item item;
 
-        //Continuously rotates the item collector along this axis.
+        //이 축을 따라 아이템 수집기를 계속 회전시킵니다.
         private readonly Vector3 rotAxis = new Vector3(0.1f, 1, 0.1f);
 
-        private void Update() 
+        private void Update()
         {
-            //Rotate the collector object.
+            //수집기 오브젝트를 회전시킵니다.
             transform.Rotate(rotAxis, Time.deltaTime * 200);
         }
 
-        //When the ItemCollector is attached to an object, this method should be called and the item this collector should be passed in.
+        //아이템 수집기가 오브젝트에 첨부되었을 때, 이 메서드를 호출하고 이 수집기의 아이템을 전달해야 합니다.
         public void Create(Item item)
         {
             this.item = item;
         }
 
-        //On trigger with the interactor, attempt will be made to add this collector's item to the interactor's inventory.
-        private void OnTriggerEnter(Collider other) 
+        //상호작용자와 트리거되면, 이 수집기의 아이템을 상호작용자의 인벤토리에 추가하려고 시도합니다.
+        private void OnTriggerEnter(Collider other)
         {
             Interactor interactor = other.GetComponent<Interactor>();
             if (interactor != null) interactor.AddToInventory(item, gameObject);
         }
-    } 
+    }
 }
